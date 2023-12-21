@@ -3,8 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/alpinejs" defer></script>
     <link rel="stylesheet" href="styles.css" />
     <link rel="shortcut icon" href="/images/tab-icon.svg" type="image/x-icon" />
+    <style>
+      [x-cloak] {
+        display: none;
+      }
+    </style>
     <title>Inchoo Jeep</title>
   </head>
   <body>
@@ -96,7 +102,8 @@
               <div class="items-container">
                 <div class="cart-item">
                   <div class="image-specs">
-                    <div>
+                    <div class="cart-item-img-wrap">
+                      <span class="cart-item-img-label">Item</span>
                       <img
                         class="cart-item-img"
                         src="/images/flip-top-jeep.png"
@@ -116,25 +123,91 @@
                   </div>
 
                   <div class="qty-total-edit">
-                    <div class="qty">
-                      <span class="qty-amount">1</span>
+                    <div class="qty-wrap">
+                      <span class="qty-label">Qty</span>
+                      <div class="qty">
+                        <span class="qty-amount">1</span>
+                      </div>
                     </div>
-                    <div class="total">$150</div>
-                    <div class="edit-remove-btns">
-                      <button>
-                        <img
-                          class="edit-remove-img"
-                          src="/images/edit.svg"
-                          alt=""
-                        />
-                      </button>
-                      <button>
-                        <img
-                          class="edit-remove-img"
-                          src="/images/remove.svg"
-                          alt=""
-                        />
-                      </button>
+
+                    <div class="total-edit-flex">
+                      <div class="total-wrap">
+                        <span class="total-label">SUBTOTAL</span>
+                        <div class="total">$150.00</div>
+                      </div>
+
+                      <div class="edit-remove-btns">
+                        <button>
+                          <img
+                            class="edit-remove-img"
+                            src="/images/edit.svg"
+                            alt=""
+                          />
+                        </button>
+                        <button>
+                          <img
+                            class="edit-remove-img"
+                            src="/images/remove.svg"
+                            alt=""
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="cart-item">
+                  <div class="image-specs">
+                    <div class="cart-item-img-wrap">
+                      <span class="cart-item-img-label">Item</span>
+                      <img
+                        class="cart-item-img"
+                        src="/images/flip-top-jeep.png"
+                        alt="flip top Jeep"
+                      />
+                    </div>
+                    <div class="product-specs">
+                      <p class="product-description">
+                        Flip Top™ PREMIUM - Complete Replacement Soft Top, Jeep
+                        1995 CJ-7/Wrangler, No doors included, Clear side and
+                        rear windows
+                      </p>
+                      <p class="product-color">
+                        <span class="color-label">Color:</span> Black Denim,
+                        MATT
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="qty-total-edit">
+                    <div class="qty-wrap">
+                      <span class="qty-label">Qty</span>
+                      <div class="qty">
+                        <span class="qty-amount">1</span>
+                      </div>
+                    </div>
+
+                    <div class="total-edit-flex">
+                      <div class="total-wrap">
+                        <span class="total-label">SUBTOTAL</span>
+                        <div class="total">$250.00</div>
+                      </div>
+
+                      <div class="edit-remove-btns">
+                        <button>
+                          <img
+                            class="edit-remove-img"
+                            src="/images/edit.svg"
+                            alt=""
+                          />
+                        </button>
+                        <button>
+                          <img
+                            class="edit-remove-img"
+                            src="/images/remove.svg"
+                            alt=""
+                          />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -149,40 +222,83 @@
                 <button class="update-btn">UPDATE SHOPPING CART</button>
               </div>
             </div>
-            <div class="summary-wrap">
+            <div
+              x-data="{
+              open : false
+              }"
+              class="summary-wrap"
+            >
               <h2>SUMMARY</h2>
               <div class="estimate-wrap">
-                <h3>ESTIMATE SHIPPING AND TAX</h3>
-                <form action="">
-                  <label for="">Country</label>
-                  <input class="margin" type="text" />
+                <button
+                  x-on:click="open = !open"
+                  x-bind:class="open ? 'active' : ''"
+                  class="accordion acc-btn"
+                >
+                  <span> ESTIMATE SHIPPING AND TAX</span>
+                  <svg
+                    x-bind:class="open ? 'rotate' : ''"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      x-bind:class="open ? 'green' : ''"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M5.33333 13.3333C5.33333 14.8036 6.52978 16 8 16C9.47022 16 10.6667 14.8036 10.6667 13.3493L10.7156 10.6196L13.3333 10.6667C14.8036 10.6667 16 9.47022 16 8C16 6.52978 14.8036 5.33333 13.3493 5.33333L10.7156 5.28533L10.6667 2.66667C10.6667 1.19644 9.47022 0 8 0C6.52978 0 5.33333 1.19644 5.33333 2.68267L5.38044 5.28533L2.66667 5.33333C1.19644 5.33333 0 6.52978 0 8C0 9.47022 1.19644 10.6667 2.68267 10.6667L5.38044 10.6196L5.33333 13.3333ZM7.11111 13.3493V8.88889H2.66667C2.17689 8.88889 1.77778 8.48978 1.77778 8C1.77778 7.51022 2.16089 7.11111 2.66667 7.11111H7.11111V2.66667C7.11111 2.17689 7.51022 1.77778 8 1.77778C8.48978 1.77778 8.88889 2.16089 8.88889 2.66667V7.11111H13.3333C13.8231 7.11111 14.2222 7.51022 14.2222 8C14.2222 8.48978 13.8231 8.88889 13.3493 8.88889H8.88889V13.3333C8.88889 13.8231 8.48978 14.2222 8 14.2222C7.51022 14.2222 7.11111 13.8231 7.11111 13.3493Z"
+                      fill="#2F2F2F"
+                    />
+                  </svg>
+                </button>
+                <form
+                  x-show="open"
+                  x-transition
+                  x-cloak
+                  class="panel"
+                  action=""
+                >
+                  <label for="countries">Country</label>
+                  <input type="text" />
                   <label for="">State/Province</label>
                   <input class="margin" type="text" />
                   <label for="">Zip/Postal Code</label>
                   <input class="margin" type="text" />
-                  <label for="">Zip/Postal Code</label>
+                  <label for="">Flat Rate</label>
                   <div class="radio-box">
                     <input type="radio" checked />
-                    <p><span>Fixed</span>&nbsp;<span>($5.00)</span></p>
+                    <p>
+                      <span>Fixed</span>&nbsp;<span class="fiver">($5.00)</span>
+                    </p>
                   </div>
                 </form>
               </div>
               <div class="summary-amounts">
                 <div class="subtotal">
-                  <p>SUBTOTAL</p>
-                  <p>$150.00</p>
+                  <p class="sub-ship">SUBTOTAL</p>
+                  <p class="sub-ship-amount">$150.00</p>
                 </div>
                 <div class="shipping">
-                  <p>Shipping &nbsp;<span>(Flat Rate - Fixed)</span></p>
-                  <p>$5.00</p>
+                  <p class="sub-ship">
+                    Shipping &nbsp;<span class="flat-rate"
+                      >(Flat Rate - Fixed)</span
+                    >
+                  </p>
+                  <p class="sub-ship-amount">$5.00</p>
                 </div>
                 <div class="final-amount">
-                  <p>ORDER TORTAL</p>
-                  <p>$155.00</p>
+                  <p class="final-label">ORDER TOTAL</p>
+                  <p class="final-number">$155.00</p>
                 </div>
               </div>
-              <button>PROCEED TO CHECKOUT</button>
-              <a href="#">CHECKOUT WITH MULTIPLE ADDRESSES</a>
+              <div class="checkout-btn-wrap">
+                <button class="checkout-btn">PROCEED TO CHECKOUT</button>
+                <a class="multiple-ad" href="#"
+                  >CHECKOUT WITH MULTIPLE ADDRESSES</a
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -195,9 +311,13 @@
         </p>
         <ul>
           <li><a href="#">About Us</a></li>
+          <span class="slash-divider">/</span>
           <li><a href="#">Contact Us</a></li>
+          <span class="slash-divider">/</span>
           <li><a href="#">Search Terms</a></li>
+          <span class="slash-divider">/</span>
           <li><a href="#">Privacy and Cookie Policy</a></li>
+          <span class="slash-divider">/</span>
           <li><a href="#">Installation Videos</a></li>
         </ul>
         <div class="customer-service-cta">
@@ -209,5 +329,6 @@
         </div>
       </div>
     </footer>
+    <script src="/index.js"></script>
   </body>
 </html>

@@ -584,9 +584,9 @@ h1 {
   border-bottom: 3px solid #f5f5f5;
 }
 
-.items-container .cart-item:nth-child(2) .cart-item-img-label,
-.items-container .cart-item:nth-child(2) .qty-label,
-.items-container .cart-item:nth-child(2) .total-label {
+.items-container .cart-item:not(:first-child) .cart-item-img-label,
+.items-container .cart-item:not(:first-child) .qty-label,
+.items-container .cart-item:not(:first-child) .total-label {
   @media (min-width: 1148px) {
     display: none;
   }
@@ -713,7 +713,19 @@ h1 {
   font-family: "BebasNeue";
   background-color: var(--light);
   transition: all 0.2s;
-  border-bottom: 1px solid #ffffff;
+  border-bottom: 1px solid;
+  border-image: linear-gradient(
+      to right,
+      var(--light) 5%,
+      #ffffff 5%,
+      #ffffff 95%,
+      var(--light) 95%
+    )
+    1;
+  @media (min-width: 1024px) {
+    border-bottom: 1px solid;
+    border-image: linear-gradient(to right, #ffffff 0%, #ffffff 100%) 1;
+  }
 }
 
 .active,
@@ -834,10 +846,20 @@ select {
 }
 
 .final-amount {
-  border-top: 1px solid #ffffff;
   padding: 16px 24px 8px 24px;
+  border-top: 1px solid;
+  border-image: linear-gradient(
+      to right,
+      var(--light) 5%,
+      #ffffff 5%,
+      #ffffff 95%,
+      var(--light) 95%
+    )
+    1;
   @media (min-width: 1024px) {
     padding: 16px 24px 32px 24px;
+    border-top: 1px solid;
+    border-image: linear-gradient(to right, #ffffff 0%, #ffffff 100%) 1;
   }
 }
 

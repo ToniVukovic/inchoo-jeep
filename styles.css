@@ -580,7 +580,7 @@ h1 {
   font-family: "TitilliumWebBold";
 }
 
-.items-container .cart-item:nth-child(1) {
+.items-container .cart-item:not(:last-child) {
   border-bottom: 3px solid #f5f5f5;
 }
 
@@ -704,6 +704,7 @@ h1 {
 .estimate-wrap .acc-btn {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 18px;
   line-height: 24px;
   width: 100%;
